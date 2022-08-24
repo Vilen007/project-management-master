@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheets %}
+<link href="{% static 'css/estilo.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
+{% block content %}
+<section id="services" class="services" style="background-color: #F1F7FD;">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>ADD NEW TASK</h2>
+        </div>
+
+<center>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class = 'w-50 table table-light shadow-lg p-3 mb-5 bg-body rounded' style="border-radius:10px;background-color:#fff;">
+            {% for field in uploadtask_form %}
+            <tr>
+                <th>{{field.label}}</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit" class="btn btn-warning">Submit</button>
+
+    </form>
+</center>
+    </div>
+</section>
+{% endblock %}

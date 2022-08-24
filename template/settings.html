@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheets %}
+<link href="{% static 'css/tasks.css' %}" rel="stylesheet"/>
+{% endblock %}
+{% block content%}
+
+<br><br><br>
+
+
+<div class="container col-8 my-5 br-2 rounded" style="background: #E8F0F9;">
+    <div class="row g-3">
+        <div class="col-8">
+            <h4>Billing Address</h4>
+                <form>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label" for="select">All users </label>
+                            <select class="form-select" id="select" name="select" style="width: 150%;">
+                                {% for result in users %}
+                                    <option value="{{result.id}}">{{result}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" name="add" onclick="onAddUser();" id="btn1" class="btn btn-primary btn-block mb-4" style="margin-top: 15px; margin-left: 25%">Continue To Checkout</button>
+
+                    <table onchange="tab1(this);" id="tb1" class="table " style="display: none; margin-left: 25%">
+                        <thead>
+                            <tr>
+                                <th scope="col">List of users</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </form>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+
+</script>
+{% endblock javascripts %}

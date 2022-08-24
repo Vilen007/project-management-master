@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content%}
+<!-- ======= Services Section ======= -->
+<section id="services" class="services" style="background-color: #FBFDFD;">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Missions</h2>
+        </div>
+
+
+        <div class="row">
+            {% for mission in missions %}
+
+            <div class="col-md-9 d-flex align-items-stretch my-4 mt-md-0">
+                <a href="{{mission.link}}" target="_blank" rel="noopener noreferrer">
+                    <div>
+                        <h4>
+                            <a href="{{mission.link}}" target="_blank" rel="noopener noreferrer">
+                                {{ mission.title }} <span class="badge bg-primary"></span>
+                            </a>
+                        </h4>
+                        <p>{{mission.desc}}</p>
+                        <p>{{ mission.date }} | {{ mission.kind }} | {{ mission.state }} | {{ mission.by }}</p>
+                    </div>
+
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section><!-- End Services Section -->
+{% endblock %}

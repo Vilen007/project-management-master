@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block content%}
+<!-- ======= Services Section ======= -->
+<section id="services" class="services" style="background-color: #FBFDFD;">
+  <div class="section-title">
+    <h2>Projects</h2>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Projet</th>
+              <th>Titre de la tâche</th>
+              <th>Propriétaire de la tâche</th>
+              <th>Date</th>
+              <th>Progression en (%)</th>
+              <th>Etat</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for proj in project_list %}
+            {% for task in task_list %}
+            <tr>
+              <td>
+                {% for user in proj.userId.all %}
+                  {{ user }}
+                {% endfor %}
+              </td>
+                <td>{{ proj.name }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ proj.state }}</td>
+                <td>{{ proj.created_at }}</td>
+                <td>{{ proj.complete_per }}</td>
+                <td>{{ proj.state }}</td>
+            </tr>
+
+            {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!--<div class="table-responsive py-4" style="background-color: #F1F7FD">-->
+<!--    <table class="table table-flush" id="datatable">-->
+<!--        <thead class="thead-light">-->
+<!--        <tr>-->
+<!--            <th>Username</th>-->
+<!--            <th>Projet</th>-->
+<!--            <th>Titre de la tâche</th>-->
+<!--            <th>Propriétaire de la tâche</th>-->
+<!--            <th>Date</th>-->
+<!--            <th>Progression en (%)</th>-->
+<!--            <th>Etat</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            {% for proj in project_list %}-->
+<!--&lt;!&ndash;            {% for task in project.task_list %}&ndash;&gt;-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    {% for user in proj.userId.all %}-->
+<!--                        {{ user }}-->
+<!--                    {% endfor %}-->
+<!--                </td>-->
+<!--                <td>{{ proj.name }}</td>-->
+<!--                <td>{{ task.name }}</td>-->
+<!--&lt;!&ndash;                <td>{{ proj.name }}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>{{ proj.created_at }}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>{{ proj.name }}</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                <td>{{ proj.state }}</td>&ndash;&gt;-->
+<!--            </tr>-->
+<!--&lt;!&ndash;            {% endfor %}&ndash;&gt;-->
+<!--            {% endfor %}-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    </div>-->
+{% endblock %}

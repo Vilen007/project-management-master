@@ -1,0 +1,43 @@
+{% extends 'tasks.html' %}
+{% block content %}
+<section id="services" class="services" style="background-color: #F9FCFD;">
+    <div class="container">
+        <div class="section-title">
+            <h2>ADD NEW TASK</h2>
+        </div>
+
+<center>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+       {% for info in infos %}
+        <div class="shadow-lg p-3 mb-5 bg-body rounded border" style="width: 50%; color: black; font-size: 20px;">
+            <a href="updateinfo/{{info.id}}"><button class="border-0 btn-transition btn btn-outline-success"><i class="fa fa-plus"></i></button></a>
+            <label><a href="{% url 'projects' %}"> Name: {{info.name}}</a></label><br>
+            <label>Port: {{info.port}}</label><br>
+            <label>Version: {{info.version}}</label><br>
+            <label>Type: {{info.type}}</label><br>
+            <label>Backup: {{info.backup}}</label><br>
+            <label>File: {{info.file}}</label><br>
+            <label>Git: {{info.git}}</label><br>
+            <label>Note: {{info.notes}}</label><br>
+            <a href="{% url 'projects' %}"><- Back</a>
+        </div>
+        {% endfor %}
+
+    </form>
+</center>
+
+<!--        <div>-->
+<!--            <ul>-->
+<!--            {% for info in infos %}-->
+<!--                <li>{{ info.project_Id }} - {{ info.name }}</li>-->
+<!--                <li>{{ info.port }}</li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--        </div>-->
+<!--        <a href="{% url 'projects' %}">Back</a>-->
+    </div>
+
+</section>
+
+{% endblock %}

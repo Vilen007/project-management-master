@@ -1,0 +1,77 @@
+{% extends 'tasks.html' %}
+{% block content %}
+<section id="services" class="services" style="background-color: #F9FCFD;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Details task</h2>
+        </div>
+    </div>
+<div class="faq-list form-group">
+            <ul class=" list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="todo-indicator bg-warning"></div>
+                    <div class="widget-content p-0">
+                        <a href="tasks/{{task.id}}">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left mr-2">
+                                <div class="custom-checkbox custom-control"> <input class="custom-control-input"  type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
+                            </div>
+                            <div class="widget-content-left">
+                                <div class="widget-heading">{{ task.name }} <div class="badge badge-info badge-color ml-2">{{ task.type }}</div>
+                                </div>
+                                <div class="widget-subheading"><i> Added - {{ task.created_at }} | deadline - {{ task.end_date }}</i></div>
+                            </div>
+                            <div class="widget-content-right">
+                                 <a href="updatetask/{{task.id}}"><button class="border-0 btn-transition btn btn-outline-success"><i class="fa fa-plus"></i></button></a>
+                                <a href="./delete/{{task.id}}"><button  class="border-0 btn-transition btn btn-outline-danger">  <i class="fa fa-trash"></i></button></a>
+
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</section>
+
+
+        <!-- Comments -->
+        <div class="section">
+            <div class="container">
+                <h2 style="margin-top: -430px;">Comments ({{ comments.count }})</h2>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!--display comment-->
+                        <lldiv class="media-list">
+                            {% for comment in comments %}
+                            <div>
+                                <img class="avatar avatar-sm mr-4"  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" style="width: 5%; border-radius: 50%;">
+                                <div class="media-body">
+                                    <div class="small-1">
+                                        <b>{{ comment.user }}</b>
+                                        <time class="ml-4 opacity-70 small-3">{{ comment.date_added }}</time>
+                                    </div>
+                                    <p>{{ comment.body }}.</p>
+                                </div>
+                            </div>
+                        </lldiv>
+                        {% endfor %}
+                        <!--display comment-->
+                        <form method="POST" action="/comment/{{task.id}}">
+                            {% csrf_token %}
+                            <input type="hidden"  name="id" value="{{task.id}}">
+                            <div class="form-group">
+                                <textarea name="comment" class="form-control md-textarea" cols="30" rows="4"></textarea>
+                            </div>
+                            <button class="btn btn-primary btn-block" type="submit">Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
